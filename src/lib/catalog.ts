@@ -26,3 +26,6 @@ export async function getCatalog(signal?: AbortSignal): Promise<Product[]> {
 }
 
 export const formatCurrency = (value: number) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+
+export const referenceDiscountRate = 1 - 28.9 / 30.9
+export const priceBeforeDiscount = (salePrice: number) => salePrice / (1 - referenceDiscountRate)

@@ -22,7 +22,7 @@ export default function App() {
       <main>
         <Hero />
         <CategoryStrip />
-        {error ? <section className="catalog-state page-shell"><p>Não foi possível carregar os produtos.</p><button onClick={load}>Tentar novamente</button></section> : products.length ? <ProductShowcase products={products} onSelect={setSelectedProduct} /> : <section className="catalog-state page-shell" aria-live="polite">Carregando produtos…</section>}
+        {error ? <section className="catalog-state page-shell"><p>Não foi possível carregar os produtos.</p><button onClick={load}>Tentar novamente</button></section> : products.length ? <ProductShowcase products={products} onSelect={setSelectedProduct} showTabs /> : <section className="catalog-state page-shell" aria-live="polite">Carregando produtos…</section>}
         <PartnerBanners />
         {products.length > 0 && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
         <PartnerBanners />
