@@ -4,7 +4,7 @@ import logo from '../assets/econverse-logo.png'
 const navItems = ['Todas categorias', 'Supermercado', 'Livros', 'Moda', 'Lançamentos', 'Ofertas do dia']
 
 export function Header() {
-  return <header className="site-header">
+  return <header className="site-header" id="inicio">
     <div className="benefits" aria-label="Benefícios da Econverse">
       <span><Icon name="shield" /> Compra <strong>100% segura</strong></span>
       <span><Icon name="truck" /> <strong>Frete grátis</strong> acima de R$ 200</span>
