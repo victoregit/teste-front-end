@@ -1,4 +1,5 @@
 import { Icon } from './Icon'
+import logo from '../assets/econverse-logo.png'
 
 const navItems = ['Todas categorias', 'Supermercado', 'Livros', 'Moda', 'Lançamentos', 'Ofertas do dia']
 
@@ -10,7 +11,7 @@ export function Header() {
       <span><Icon name="card" /> <strong>Parcele</strong> suas compras</span>
     </div>
     <div className="header-main page-shell">
-      <a className="brand" href="#inicio" aria-label="Econverse, página inicial"><i>ec</i><b>onverse</b></a>
+      <a className="brand" href="#inicio" aria-label="Econverse, página inicial"><img src={logo} alt="Econverse" /></a>
       <form className="search" role="search" onSubmit={(event) => event.preventDefault()}>
         <label className="visually-hidden" htmlFor="site-search">Busque por produtos</label>
         <input id="site-search" type="search" placeholder="O que você está buscando?" />
