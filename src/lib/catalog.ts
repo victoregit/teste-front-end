@@ -1,6 +1,6 @@
 export type Product = { id: string; name: string; description: string; imageUrl: string; price: number }
 
-const catalogUrl = 'https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json'
+const catalogUrl = '/api/catalog'
 
 const stringValue = (value: unknown) => typeof value === 'string' ? value.trim() : ''
 
