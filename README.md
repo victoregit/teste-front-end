@@ -1,6 +1,6 @@
 # Desafio Front-End Econverse
 
-Implementação da home do desafio Front-End da Econverse com React, TypeScript e Sass. A página consome o catálogo oficial e apresenta os dados do produto selecionado em modal.
+Implementação da home do desafio Front-End da Econverse com React, TypeScript e Sass. A página consome o catálogo oficial, apresenta os dados do produto selecionado em modal e possui layout responsivo para dispositivos móveis.
 
 ## Demonstração
 
