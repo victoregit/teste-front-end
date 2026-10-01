@@ -1,41 +1,71 @@
-# Econverse — teste Front-End
+# Desafio Front-End Econverse
 
-Implementação da home do desafio Front-End da Econverse, construída a partir das referências visuais fornecidas. A página exibe vitrines de produtos, modal acessível e seções institucionais, sem fluxo de compra, backend ou autenticação.
+Implementação da página inicial solicitada no desafio Front-End da Econverse. A aplicação reproduz as seções da referência, consome o catálogo oficial em tempo de execução e apresenta os dados do produto selecionado em um modal acessível.
 
-## Stack
+## Tecnologias
 
-- React
+- React 19
 - TypeScript
 - Vite
 - Sass/SCSS
 
+Não são utilizadas bibliotecas de interface, backend, checkout, autenticação ou carrinho funcional.
+
+## Requisitos
+
+Antes de iniciar, tenha o Node.js e o npm instalados. É recomendável utilizar uma versão LTS atual do Node.js.
+
+Você pode conferir as versões instaladas com:
+
+```bash
+node -v
+npm -v
+```
+
 ## Instalação
+
+Clone o repositório e acesse a pasta do projeto:
+
+```bash
+git clone https://github.com/victoregit/teste-front-end.git
+cd teste-front-end
+```
+
+Em seguida, instale as dependências:
 
 ```bash
 npm install
 ```
 
-## Desenvolvimento
+## Scripts disponíveis
+
+### Desenvolvimento
+
+Inicia o servidor local de desenvolvimento. A URL de acesso é exibida no terminal, normalmente `http://localhost:5173`.
 
 ```bash
 npm run dev
 ```
 
-O Vite exibirá a URL local da aplicação no terminal.
+### Verificação de tipos
 
-## Verificação de tipos
+Executa a verificação de tipos do TypeScript.
 
 ```bash
 npm run typecheck
 ```
 
-## Build de produção
+### Build de produção
+
+Gera a versão otimizada da aplicação na pasta `dist`.
 
 ```bash
 npm run build
 ```
 
-## Prévia do build
+### Prévia do build
+
+Serve localmente a versão gerada pelo build.
 
 ```bash
 npm run preview
@@ -43,40 +73,58 @@ npm run preview
 
 ## Catálogo de produtos
 
-Os produtos são carregados em tempo de execução a partir do endpoint oficial do desafio:
+Os produtos são carregados durante a execução a partir do endpoint oficial do desafio:
 
 ```text
 https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json
 ```
 
-O projeto usa o caminho local `/api/catalog`. A configuração de proxy em `vite.config.ts` encaminha esse caminho ao endpoint oficial durante a execução pelo Vite, evitando dependência de uma chamada direta do navegador ao domínio externo.
+A aplicação consulta o caminho local `/api/catalog`. No desenvolvimento, `vite.config.ts` encaminha esse caminho ao endpoint oficial. Isso evita depender de uma chamada direta do navegador a uma origem externa.
 
-Para uma futura publicação no Vercel, `vercel.json` mantém esse mesmo caminho com uma rewrite externa. Não há função, backend ou cópia local do catálogo.
+Para uma publicação na Vercel, `vercel.json` mantém a mesma rota com uma rewrite externa. Não existe cópia local do catálogo, função serverless ou backend próprio.
 
-O catálogo possui estados distintos de carregamento, sucesso, resposta vazia e erro. Em caso de falha, a interface disponibiliza uma nova tentativa.
+O catálogo trata os estados de carregamento, sucesso, resposta vazia e erro. Quando há falha na consulta, a interface oferece uma opção para tentar novamente.
 
-## Preços
+## Produtos e preços
 
-O preço principal exibido em cada card e no modal vem diretamente do JSON oficial e é formatado em reais.
+- O nome, a imagem, a descrição e o preço principal são recebidos do JSON oficial.
+- O modal sempre usa os dados do produto selecionado.
+- O preço anterior/riscado, quando exibido, é somente uma composição visual derivada do preço recebido; não é um segundo preço entregue pela API.
+- O valor parcelado também é calculado a partir do preço principal.
 
-Quando exibido, o preço anterior/riscado é uma composição visual derivada do preço oficial. Ele não representa um segundo preço informado pela API. A parcela exibida também é calculada a partir do preço principal.
+## Estrutura do projeto
+
+```text
+src/
+├── assets/          # Imagens e ícones utilizados pela interface
+├── components/      # Componentes reutilizáveis da página
+├── lib/             # Tipos, normalização e acesso ao catálogo
+├── styles/          # Estilos SCSS globais e parciais
+├── App.tsx          # Estado do catálogo e composição da página
+└── main.tsx         # Ponto de entrada da aplicação
+```
 
 ## Validação manual
 
-1. Aguarde o carregamento da vitrine.
+Após iniciar a aplicação, valide ao menos os seguintes pontos:
+
+1. Aguarde o carregamento da vitrine e confira os produtos recebidos.
 2. Abra dois produtos diferentes pelo card ou pelo botão **Comprar**.
-3. Confira imagem, nome, preço e descrição do produto selecionado.
+3. Confira imagem, nome, preço e descrição de cada produto no modal.
 4. Feche o modal pelo botão, pela tecla `Escape` e pelo clique no overlay.
-5. Teste os controles de quantidade e a navegação por teclado.
+5. Teste os controles de quantidade, o foco por teclado e os carrosséis em telas menores.
 
-Também verifique os estados de carregamento, erro com nova tentativa e catálogo vazio quando esses cenários puderem ser reproduzidos no ambiente.
+Os cenários de erro e catálogo vazio dependem da resposta do endpoint; a interface já possui estados específicos e retry para essas situações.
 
-## Lint e testes automatizados
+## Lint e testes
 
-O projeto não possui scripts de lint ou testes automatizados no momento. A validação prevista para esta entrega é manual, além de `npm run typecheck` e `npm run build`.
+Não há scripts de lint ou testes automatizados neste projeto. A validação técnica disponível é feita com:
 
-## Limitações conhecidas
+```bash
+npm run typecheck
+npm run build
+```
 
-- Busca, newsletter, navegação institucional e botão de compra são controles visuais; não simulam fluxos de e-commerce.
-- Não há checkout, carrinho funcional, autenticação ou backend.
-- A fidelidade visual deve ser confirmada comparando a aplicação executada com as referências do desafio na viewport correspondente.
+## Limitações do escopo
+
+Busca, newsletter, links institucionais e botões de compra são elementos de interface do layout; eles não representam fluxos reais de e-commerce. O projeto não inclui carrinho funcional, checkout, autenticação, cadastro ou backend.
