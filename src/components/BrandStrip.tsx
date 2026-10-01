@@ -1,1 +1,14 @@
-export function BrandStrip() { return <section className="brands page-shell" aria-labelledby="brands-title"><h2 id="brands-title">Navegue por marcas</h2><div>{Array.from({ length: 5 }, (_, index) => <a href="#produtos" key={index} aria-label={`Marca ${index + 1}`}><span className="brand">ec<b>onverse</b></span></a>)}</div></section> }
+export function BrandStrip() {
+  return (
+    <section className="brands page-shell" aria-labelledby="brands-title">
+      <h2 id="brands-title">Navegue por marcas</h2>
+      <div>
+        {Array.from({ length: 5 }, (_, index) => (
+          <a href="#produtos" key={index} aria-label={`Marca ${index + 1}`}>
+            <span className="brand">ec<b>onverse</b></span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

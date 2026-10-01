@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CategoryStrip } from './components/CategoryStrip'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
@@ -10,26 +10,63 @@ import { Newsletter } from './components/Newsletter'
 import { Footer } from './components/Footer'
 import { getCatalog, type Product } from './lib/catalog'
 
+type CatalogStatus = 'loading' | 'success' | 'empty' | 'error'
+
 export default function App() {
   const [products, setProducts] = useState<Product[]>([])
-  const [error, setError] = useState(false)
+  const [catalogStatus, setCatalogStatus] = useState<CatalogStatus>('loading')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
-  const load = () => { setError(false); getCatalog().then(setProducts).catch(() => setError(true)) }
-  useEffect(() => { load() }, [])
+
+  const load = useCallback(async () => {
+    setCatalogStatus('loading')
+
+    try {
+      const catalog = await getCatalog()
+      setProducts(catalog)
+      setCatalogStatus(catalog.length > 0 ? 'success' : 'empty')
+    } catch {
+      setProducts([])
+      setCatalogStatus('error')
+    }
+  }, [])
+
+  useEffect(() => {
+    void load()
+  }, [load])
+
   return (
     <>
       <Header />
       <main>
         <Hero />
         <CategoryStrip />
-        {error ? <section className="catalog-state page-shell"><p>Não foi possível carregar os produtos.</p><button onClick={load}>Tentar novamente</button></section> : products.length ? <ProductShowcase products={products} onSelect={setSelectedProduct} showTabs /> : <section className="catalog-state page-shell" aria-live="polite">Carregando produtos…</section>}
+        {catalogStatus === 'loading' && (
+          <section className="catalog-state page-shell" aria-live="polite">
+            Carregando produtos…
+          </section>
+        )}
+        {catalogStatus === 'error' && (
+          <section className="catalog-state page-shell" aria-live="assertive">
+            <p>Não foi possível carregar os produtos.</p>
+            <button type="button" onClick={load}>Tentar novamente</button>
+          </section>
+        )}
+        {catalogStatus === 'empty' && (
+          <section className="catalog-state page-shell" aria-live="polite">
+            Nenhum produto está disponível no momento.
+          </section>
+        )}
+        {catalogStatus === 'success' && (
+          <ProductShowcase products={products} onSelect={setSelectedProduct} showTabs />
+        )}
         <PartnerBanners />
-        {products.length > 0 && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
+        {catalogStatus === 'success' && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
         <PartnerBanners />
         <BrandStrip />
-        {products.length > 0 && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
+        {catalogStatus === 'success' && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
       </main>
-      <Newsletter /><Footer />
+      <Newsletter />
+      <Footer />
       {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
     </>
   )

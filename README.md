@@ -1,31 +1,82 @@
-# Teste Econverse: Vaga Desenvolvedor Front-End
+# Econverse — teste Front-End
 
-### Vem ser #Econverse!
+Implementação da home do desafio Front-End da Econverse, construída a partir das referências visuais fornecidas. A página exibe vitrines de produtos, modal acessível e seções institucionais, sem fluxo de compra, backend ou autenticação.
 
-Segue abaixo as instruções para a execução do teste.
+## Stack
 
-## Instruções
-- Faça um fork desse projeto para a sua conta pessoal do GitHub.
-- Desenvolva a página conforme as **Especificações Técnicas** 
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail gustavo.cipriano@econverse.com.br com o título **Teste Vaga FrontEnd**
+- React
+- TypeScript
+- Vite
+- Sass/SCSS
 
-## Especificações Técnicas
-- Desenvolver a pagina em React e TypeScript conforme o [layout](https://www.figma.com/file/rWnzPeoxgynuNPsJjV0VmV/Teste-Front-End-Jr?node-id=0%3A1). Para conseguir pegar os elementos do Figma, basta copiar o layout para sua conta que terá acesso de edição.
-- Montar a [vitrine](https://app.econverse.com.br/teste-front-end/junior/tecnologia/layout/vitrine-produtos.png) de produtos consumindo as informações dos produtos em json atraves desse [Link](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json).
-- Desenvolver a interação ao clicar em um produto conforme layout. A interação consiste em abrir um modal com as principais informações do produto presente no arquivo [JSON](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json) conforme o produto que clicar.
-- Utilizar Pré-processador Sass, Less ou Stylus.
-- Respeitar o Layout pixel a pixel, tamanho das fontes, cores e botões.
-- Não Utilizar bibliotecas UI como Bootstrap, Foundation, ou afins.
+## Instalação
 
-## Pontos Extras
-- Utilizar Boas práticas de SEO
-- Uso de HTML semântico
+```bash
+npm install
+```
 
-## O que avaliaremos em seu teste
-- Organização do projeto
-- Lógica do código
-- Componentização
-- Alcance dos objetivos propostos
+## Desenvolvimento
 
-**Boa sorte! ;)**
+```bash
+npm run dev
+```
+
+O Vite exibirá a URL local da aplicação no terminal.
+
+## Verificação de tipos
+
+```bash
+npm run typecheck
+```
+
+## Build de produção
+
+```bash
+npm run build
+```
+
+## Prévia do build
+
+```bash
+npm run preview
+```
+
+## Catálogo de produtos
+
+Os produtos são carregados em tempo de execução a partir do endpoint oficial do desafio:
+
+```text
+https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json
+```
+
+O projeto usa o caminho local `/api/catalog`. A configuração de proxy em `vite.config.ts` encaminha esse caminho ao endpoint oficial durante a execução pelo Vite, evitando dependência de uma chamada direta do navegador ao domínio externo.
+
+Para uma futura publicação no Vercel, `vercel.json` mantém esse mesmo caminho com uma rewrite externa. Não há função, backend ou cópia local do catálogo.
+
+O catálogo possui estados distintos de carregamento, sucesso, resposta vazia e erro. Em caso de falha, a interface disponibiliza uma nova tentativa.
+
+## Preços
+
+O preço principal exibido em cada card e no modal vem diretamente do JSON oficial e é formatado em reais.
+
+Quando exibido, o preço anterior/riscado é uma composição visual derivada do preço oficial. Ele não representa um segundo preço informado pela API. A parcela exibida também é calculada a partir do preço principal.
+
+## Validação manual
+
+1. Aguarde o carregamento da vitrine.
+2. Abra dois produtos diferentes pelo card ou pelo botão **Comprar**.
+3. Confira imagem, nome, preço e descrição do produto selecionado.
+4. Feche o modal pelo botão, pela tecla `Escape` e pelo clique no overlay.
+5. Teste os controles de quantidade e a navegação por teclado.
+
+Também verifique os estados de carregamento, erro com nova tentativa e catálogo vazio quando esses cenários puderem ser reproduzidos no ambiente.
+
+## Lint e testes automatizados
+
+O projeto não possui scripts de lint ou testes automatizados no momento. A validação prevista para esta entrega é manual, além de `npm run typecheck` e `npm run build`.
+
+## Limitações conhecidas
+
+- Busca, newsletter, navegação institucional e botão de compra são controles visuais; não simulam fluxos de e-commerce.
+- Não há checkout, carrinho funcional, autenticação ou backend.
+- A fidelidade visual deve ser confirmada comparando a aplicação executada com as referências do desafio na viewport correspondente.
