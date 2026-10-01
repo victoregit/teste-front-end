@@ -1,0 +1,24 @@
+import partnerImage from '../assets/partner-store.jpg'
+
+export function PartnerBanners() {
+  return (
+    <section className="partners page-shell" aria-label="Parceiros">
+      <article>
+        <img src={partnerImage} alt="Interior de loja de eletrônicos" />
+        <div>
+          <h2>Parceiros</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur</p>
+          <a className="button button--yellow" href="#parceiros">Confira</a>
+        </div>
+      </article>
+      <article>
+        <img src={partnerImage} alt="Interior de loja de eletrônicos" />
+        <div>
+          <h2>Parceiros</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur</p>
+          <a className="button button--yellow" href="#parceiros">Confira</a>
+        </div>
+      </article>
+    </section>
+  )
+}

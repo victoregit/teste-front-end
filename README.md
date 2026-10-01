@@ -1,31 +1,70 @@
-# Teste Econverse: Vaga Desenvolvedor Front-End
+# Desafio Front-End Econverse
 
-### Vem ser #Econverse!
+Implementação da home do desafio Front-End da Econverse com React, TypeScript e Sass. A página consome o catálogo oficial e apresenta os dados do produto selecionado em modal.
 
-Segue abaixo as instruções para a execução do teste.
+## Tecnologias
 
-## Instruções
-- Faça um fork desse projeto para a sua conta pessoal do GitHub.
-- Desenvolva a página conforme as **Especificações Técnicas** 
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail gustavo.cipriano@econverse.com.br com o título **Teste Vaga FrontEnd**
+- React
+- TypeScript
+- Vite
+- Sass/SCSS
 
-## Especificações Técnicas
-- Desenvolver a pagina em React e TypeScript conforme o [layout](https://www.figma.com/file/rWnzPeoxgynuNPsJjV0VmV/Teste-Front-End-Jr?node-id=0%3A1). Para conseguir pegar os elementos do Figma, basta copiar o layout para sua conta que terá acesso de edição.
-- Montar a [vitrine](https://app.econverse.com.br/teste-front-end/junior/tecnologia/layout/vitrine-produtos.png) de produtos consumindo as informações dos produtos em json atraves desse [Link](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json).
-- Desenvolver a interação ao clicar em um produto conforme layout. A interação consiste em abrir um modal com as principais informações do produto presente no arquivo [JSON](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json) conforme o produto que clicar.
-- Utilizar Pré-processador Sass, Less ou Stylus.
-- Respeitar o Layout pixel a pixel, tamanho das fontes, cores e botões.
-- Não Utilizar bibliotecas UI como Bootstrap, Foundation, ou afins.
+## Requisitos
 
-## Pontos Extras
-- Utilizar Boas práticas de SEO
-- Uso de HTML semântico
+- Node.js
+- npm
 
-## O que avaliaremos em seu teste
-- Organização do projeto
-- Lógica do código
-- Componentização
-- Alcance dos objetivos propostos
+```bash
+node -v
+npm -v
+```
 
-**Boa sorte! ;)**
+## Instalação
+
+```bash
+git clone https://github.com/victoregit/teste-front-end.git
+cd teste-front-end
+npm install
+```
+
+## Scripts
+
+| Comando | Descrição |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento. |
+| `npm run typecheck` | Verifica os tipos TypeScript. |
+| `npm run build` | Gera o build de produção em `dist`. |
+| `npm run preview` | Exibe localmente o build de produção. |
+
+## Catálogo
+
+Os produtos são consumidos em tempo de execução a partir do endpoint oficial:
+
+```text
+https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json
+```
+
+No desenvolvimento, a rota `/api/catalog` é encaminhada ao endpoint em `vite.config.ts`. Na Vercel, a mesma rota é mantida em `vercel.json`.
+
+Nome, imagem, descrição e preço principal vêm do catálogo. O preço riscado, quando exibido, é uma composição visual derivada do preço oficial.
+
+## Estrutura
+
+```text
+src/
+├── assets/       # Imagens e ícones
+├── components/   # Componentes React
+├── lib/          # Catálogo e formatação de dados
+├── styles/       # Estilos SCSS
+├── App.tsx       # Página e estado do catálogo
+└── main.tsx      # Entrada da aplicação
+```
+
+## Validação
+
+```bash
+npm run typecheck
+npm run build
+```
+
+Não há scripts de lint ou testes automatizados. A validação do desafio é feita manualmente, incluindo carregamento da vitrine, modal, teclado e responsividade.

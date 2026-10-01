@@ -1,0 +1,39 @@
+import { Icon } from './Icon'
+import logo from '../assets/econverse-logo.png'
+
+export function Footer() {
+  return (
+    <footer className="footer">
+      <div className="page-shell">
+        <div>
+          <a className="brand" href="#inicio"><img src={logo} alt="Econverse" /></a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <nav className="social-links" aria-label="Redes sociais">
+            <a href="#instagram" aria-label="Instagram"><Icon name="instagram" /></a>
+            <a href="#facebook" aria-label="Facebook"><Icon name="facebook" /></a>
+            <a href="#linkedin" aria-label="LinkedIn"><Icon name="linkedin" /></a>
+          </nav>
+        </div>
+        <nav aria-label="Institucional">
+          <h2>Institucional</h2>
+          <a href="#inicio">Sobre Nós</a>
+          <a href="#inicio">Movimento</a>
+          <a href="#inicio">Trabalhe conosco</a>
+        </nav>
+        <nav aria-label="Ajuda">
+          <h2>Ajuda</h2>
+          <a href="#inicio">Suporte</a>
+          <a href="#inicio">Fale Conosco</a>
+          <a href="#inicio">Perguntas Frequentes</a>
+        </nav>
+        <nav aria-label="Termos">
+          <h2>Termos</h2>
+          <a href="#inicio">Termos e Condições</a>
+          <a href="#inicio">Política de Privacidade</a>
+          <a href="#inicio">Troca e Devolução</a>
+        </nav>
+      </div>
+      <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>
+    </footer>
+  )
+}
