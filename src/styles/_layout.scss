@@ -102,28 +102,29 @@
 .navigation svg { width: 19px; }
 
 .hero {
-  height: 391px;
+  height: 390px;
   background: linear-gradient(90deg, rgba(0, 0, 0, .83) 0%, rgba(0, 0, 0, .55) 35%, rgba(0, 0, 0, .12) 72%), url('../assets/hero-black-friday.jpg') center 51% / cover no-repeat;
   color: #fff;
 }
 
-.hero-content { padding-top: 76px; }
+.hero-content { padding-top: 78px; }
 
 .hero h1 {
   margin: 0;
-  font-size: 47px;
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -.8px;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 50px;
+  letter-spacing: 0;
 }
 
 .hero p {
-  margin: 22px 0 39px;
-  font-size: 31px;
-  line-height: 1;
+  margin: 18px 0 41px;
+  font-size: 32px;
+  line-height: 48px;
 }
 
 .hero p strong { color: $color-yellow; }
+.hero .button { min-width: 206px; margin-left: 7px; font-size: 16px; font-weight: 600; }
 
 .button {
   display: inline-grid;
@@ -142,9 +143,10 @@
 
 .categories {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 128px);
+  width: 1160px;
   gap: 42px;
-  padding: 37px 59px 25px;
+  padding: 39px 0 25px;
 }
 
 .category {
@@ -172,12 +174,13 @@
 
 .category b {
   display: block;
-  margin-top: 18px;
+  margin-top: 22px;
   font-weight: 500;
   white-space: nowrap;
 }
 
 .category.is-selected { color: #3019b2; font-weight: 600; }
+.category.is-selected b { font-weight: 600; }
 .category.is-selected span { background: #fff; box-shadow: 0 2px 9px rgba(0, 0, 0, .22); }
 
 @media (max-width: 900px) {
@@ -191,7 +194,7 @@
   .header-main { grid-template-columns: auto 1fr auto; gap: 20px; }
   .navigation { justify-content: flex-start; gap: 25px; padding: 0 16px; overflow-x: auto; }
   .hero h1 { font-size: 38px; }
-  .categories { display: flex; gap: 18px; padding: 30px 0 24px; overflow-x: auto; }
+  .categories { display: flex; width: 100%; gap: 18px; padding: 30px 0 24px; overflow-x: auto; }
   .category { min-width: 130px; }
 }
 
@@ -213,6 +216,7 @@
   .hero h1 { max-width: 300px; font-size: 32px; line-height: 1.12; }
   .hero p { margin: 16px 0 28px; font-size: 22px; }
   .button { min-width: 165px; height: 45px; }
+  .hero .button { margin-left: 0; font-size: 15px; }
   .categories { width: 100%; gap: 14px; padding: 26px 16px 30px; }
   .category { min-width: 102px; font-size: 11px; }
   .category span { height: 102px; }

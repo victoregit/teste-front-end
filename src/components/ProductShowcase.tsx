@@ -2,17 +2,17 @@ import { useId, useRef, useState } from 'react'
 import type { Product } from '../lib/catalog'
 import { ProductCard } from './ProductCard'
 import { Icon } from './Icon'
-type Props = { products: Product[]; onSelect: (product: Product) => void; showTabs?: boolean }
+type Props = { products: Product[]; onSelect: (product: Product) => void; showTabs?: boolean; isLast?: boolean }
 const tabs = ['Celular', 'Acessórios', 'Tablets', 'Notebooks', 'TVs', 'Ver todos']
 
-export function ProductShowcase({ products, onSelect, showTabs = false }: Props) {
+export function ProductShowcase({ products, onSelect, showTabs = false, isLast = false }: Props) {
   const listRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
   const [isAtStart, setIsAtStart] = useState(true)
   const scroll = (side: 1 | -1) => listRef.current?.scrollBy({ left: side * 322, behavior: 'smooth' })
 
   return (
-    <section className="showcase page-shell" aria-labelledby={titleId}>
+    <section className={`showcase page-shell ${showTabs ? 'showcase--tabs' : 'showcase--compact'}${isLast ? ' showcase--last' : ''}`} aria-labelledby={titleId}>
       <div className="section-title">
         <span />
         <h2 id={titleId}>Produtos relacionados</h2>
