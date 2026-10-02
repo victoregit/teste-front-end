@@ -8,7 +8,7 @@ export function PartnerBanners() {
         <div>
           <h2>Parceiros</h2>
           <p>Lorem ipsum dolor sit amet, consectetur</p>
-          <a className="button button--yellow" href="#parceiros">Confira</a>
+          <a className="button button--yellow" href="#inicio">Confira</a>
         </div>
       </article>
       <article>
@@ -16,7 +16,7 @@ export function PartnerBanners() {
         <div>
           <h2>Parceiros</h2>
           <p>Lorem ipsum dolor sit amet, consectetur</p>
-          <a className="button button--yellow" href="#parceiros">Confira</a>
+          <a className="button button--yellow" href="#inicio">Confira</a>
         </div>
       </article>
     </section>

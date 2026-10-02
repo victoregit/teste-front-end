@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { Product } from '../lib/catalog'
 import { ProductCard } from './ProductCard'
 import { Icon } from './Icon'
@@ -9,10 +9,24 @@ export function ProductShowcase({ products, onSelect, showTabs = false, isLast =
   const listRef = useRef<HTMLDivElement>(null)
   const titleId = useId()
   const [isAtStart, setIsAtStart] = useState(true)
+  const [isAtEnd, setIsAtEnd] = useState(false)
   const scroll = (side: 1 | -1) => listRef.current?.scrollBy({ left: side * 322, behavior: 'smooth' })
+  const updateScrollControls = (element: HTMLDivElement) => {
+    const maxScrollLeft = element.scrollWidth - element.clientWidth
+    setIsAtStart(element.scrollLeft <= 1)
+    setIsAtEnd(maxScrollLeft <= 1 || element.scrollLeft >= maxScrollLeft - 1)
+  }
+
+  useEffect(() => {
+    const list = listRef.current
+    if (!list) return
+
+    const frame = requestAnimationFrame(() => updateScrollControls(list))
+    return () => cancelAnimationFrame(frame)
+  }, [products])
 
   return (
-    <section className={`showcase page-shell ${showTabs ? 'showcase--tabs' : 'showcase--compact'}${isLast ? ' showcase--last' : ''}`} aria-labelledby={titleId}>
+    <section id={showTabs ? 'produtos' : undefined} className={`showcase page-shell ${showTabs ? 'showcase--tabs' : 'showcase--compact'}${isLast ? ' showcase--last' : ''}`} aria-labelledby={titleId}>
       <div className="section-title">
         <span />
         <h2 id={titleId}>Produtos relacionados</h2>
@@ -34,11 +48,11 @@ export function ProductShowcase({ products, onSelect, showTabs = false, isLast =
         <div
           className="showcase__cards"
           ref={listRef}
-          onScroll={event => setIsAtStart(event.currentTarget.scrollLeft <= 1)}
+          onScroll={event => updateScrollControls(event.currentTarget)}
         >
           {products.map(product => <ProductCard key={product.id} product={product} onSelect={onSelect} />)}
         </div>
-        <button type="button" onClick={() => scroll(1)} aria-label="Próximos produtos">
+        <button type="button" onClick={() => scroll(1)} aria-label="Próximos produtos" disabled={isAtEnd}>
           <Icon name="chevron-right" />
         </button>
       </div>
