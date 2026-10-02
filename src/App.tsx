@@ -63,7 +63,7 @@ export default function App() {
         {catalogStatus === 'success' && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
         <PartnerBanners />
         <BrandStrip />
-        {catalogStatus === 'success' && <ProductShowcase products={products} onSelect={setSelectedProduct} />}
+        {catalogStatus === 'success' && <ProductShowcase products={products} onSelect={setSelectedProduct} isLast />}
       </main>
       <Newsletter />
       <Footer />
