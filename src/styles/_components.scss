@@ -167,30 +167,50 @@
 .partners {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  width: min(1281px, calc(100% - 40px));
+  gap: 13px;
   padding: 20px 0 53px;
 }
 
 .partners article {
   position: relative;
-  min-height: 350px;
+  height: 350px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: 20px;
   color: #fff;
 }
 
 .partners img {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  top: -12.86%;
+  left: -15.68%;
+  width: 131.18%;
+  height: 143.71%;
   object-fit: cover;
-  filter: brightness(.52);
 }
 
-.partners div { position: relative; padding: 120px 43px; }
-.partners h2 { margin: 0; font-size: 38px; }
-.partners p { max-width: 220px; }
-.partners .button { min-width: 145px; height: 48px; text-transform: uppercase; }
+.partners article::after {
+  position: absolute;
+  inset: 89px 0 0;
+  border-radius: 0 0 20px 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 85.04%);
+  content: '';
+  opacity: .8;
+}
+
+.partners div { position: relative; z-index: 1; padding: 114px 44px 0; }
+.partners h2 { margin: 0; font-size: 40px; line-height: 60px; }
+.partners p { max-width: 200px; margin: 8px 0 32px; font-size: 16px; line-height: 24px; }
+.partners .button {
+  width: 145px;
+  min-width: 145px;
+  height: 48px;
+  border-radius: 6px;
+  color: #271c47;
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 
 .brands { padding: 32px 0 64px; text-align: center; }
 .brands h2 { color: #3746ba; font-size: 28px; }
@@ -211,8 +231,7 @@
   box-shadow: 0 4px 15px #0002;
 }
 
-.brands .brand { color: #ffcd00; font-size: 21px; font-weight: 700; letter-spacing: -2px; }
-.brands .brand b { color: #271c50; }
+.brands img { width: 100px; height: auto; }
 
 .newsletter { background: #291b50; color: #fff; }
 
@@ -350,7 +369,7 @@
   .showcase__cards { grid-auto-columns: 280px; }
   .partners,
   .newsletter > div { grid-template-columns: 1fr; }
-  .partners article { min-height: 270px; }
+  .partners article { height: 270px; }
   .partners div { padding: 65px 28px; }
   .brands > div { grid-template-columns: repeat(5, 150px); overflow-x: auto; }
   .newsletter > div { gap: 20px; padding: 30px 0; }
@@ -386,14 +405,15 @@
   .product-card strong { font-size: 19px; }
   .product-card__buy { height: 40px; }
   .partners { grid-template-columns: 1fr; width: calc(100% - 32px); gap: 16px; padding: 12px 0 36px; }
-  .partners article { min-height: 245px; border-radius: 13px; }
+  .partners article { height: 245px; border-radius: 13px; }
   .partners div { padding: 55px 27px; }
   .partners h2 { font-size: 33px; }
   .partners p { font-size: 13px; }
-  .brands { width: 100%; padding: 20px 0 42px; overflow: hidden; }
+  .brands { width: calc(100% - 32px); padding: 20px 0 42px; overflow: visible; }
   .brands h2 { font-size: 22px; }
-  .brands > div { grid-template-columns: repeat(5, 104px); gap: 16px; padding: 0 20px; }
-  .brands .brand { font-size: 17px; }
+  .brands > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 0; }
+  .brands a { flex: 0 0 calc((100% - 28px) / 3); }
+  .brands img { width: 70%; }
   .newsletter > div { width: calc(100% - 32px); padding: 34px 0; }
   .newsletter h2 { font-size: 22px; line-height: 1.2; }
   .newsletter form { gap: 8px; }
