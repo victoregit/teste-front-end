@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { formatCurrency, type Product } from '../lib/catalog'
-import phoneImage from '../assets/product-phone.png'
 
 type Props = { product: Product; onClose: () => void }
 
@@ -53,11 +52,7 @@ export function ProductModal({ product, onClose }: Props) {
         <button className="modal-close" data-close type="button" onClick={onClose} aria-label="Fechar">
           ×
         </button>
-        <img
-          src={product.imageUrl}
-          onError={(event) => { event.currentTarget.src = phoneImage }}
-          alt={product.name}
-        />
+        <img src={product.imageUrl} alt={product.name} />
         <div>
           <h2 id="modal-title">{product.name}</h2>
           <strong>{formatCurrency(product.price)}</strong>
