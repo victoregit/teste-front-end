@@ -21,19 +21,19 @@ export function Header() {
           <button type="submit" aria-label="Pesquisar"><Icon name="search" /></button>
         </form>
         <nav className="header-actions" aria-label="Ações do cliente">
-          <a href="#entrar" aria-label="Entrar"><Icon name="login" /></a>
-          <a href="#favoritos" aria-label="Favoritos"><Icon name="heart" /></a>
-          <a href="#conta" aria-label="Minha conta"><Icon name="user" /></a>
-          <a href="#carrinho" aria-label="Carrinho"><Icon name="cart" /></a>
+          <a href="#inicio" aria-label="Entrar"><Icon name="login" /></a>
+          <a href="#inicio" aria-label="Favoritos"><Icon name="heart" /></a>
+          <a href="#inicio" aria-label="Minha conta"><Icon name="user" /></a>
+          <a href="#inicio" aria-label="Carrinho"><Icon name="cart" /></a>
         </nav>
       </div>
       <nav className="navigation page-shell" aria-label="Categorias principais">
         {navItems.map((item) => (
-          <a key={item} className={item === 'Ofertas do dia' ? 'is-active' : ''} href={`#${item.toLowerCase().replaceAll(' ', '-')}`}>
+          <a key={item} className={item === 'Ofertas do dia' ? 'is-active' : ''} href="#produtos">
             {item}
           </a>
         ))}
-        <a href="#assinatura"><Icon name="crown" /> Assinatura</a>
+        <a href="#inicio"><Icon name="crown" /> Assinatura</a>
       </nav>
     </header>
   )

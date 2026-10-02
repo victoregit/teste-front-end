@@ -9,9 +9,9 @@ export function Footer() {
           <a className="brand" href="#inicio"><img src={logo} alt="Econverse" /></a>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <nav className="social-links" aria-label="Redes sociais">
-            <a href="#instagram" aria-label="Instagram"><Icon name="instagram" /></a>
-            <a href="#facebook" aria-label="Facebook"><Icon name="facebook" /></a>
-            <a href="#linkedin" aria-label="LinkedIn"><Icon name="linkedin" /></a>
+            <a href="#inicio" aria-label="Instagram"><Icon name="instagram" /></a>
+            <a href="#inicio" aria-label="Facebook"><Icon name="facebook" /></a>
+            <a href="#inicio" aria-label="LinkedIn"><Icon name="linkedin" /></a>
           </nav>
         </div>
         <nav aria-label="Institucional">
