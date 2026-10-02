@@ -67,6 +67,11 @@
 
 .showcase__rail > button svg { width: 18px; height: 18px; stroke-width: 2; }
 
+.showcase__rail > button:disabled {
+  color: #9f9f9f;
+  cursor: default;
+}
+
 .showcase__cards {
   display: grid;
   grid-auto-flow: column;
